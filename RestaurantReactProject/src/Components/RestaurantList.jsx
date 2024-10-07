@@ -1,21 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../index.css";
 
-const RestaurantList = ({ restaurants }) => {
+export default function RestaurantList() {
+  const [restaurants, setRestaurants] = useState([]);
+  const [menus, setMenus] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const response = await axios.get(
+          "https://localhost:7275/viewrestaurants"
+        );
+        setRestaurants(response.data);
+      } catch (error) {
+        console.error("Error fetching restaurants:", error);
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
+
+  const handleViewMenu = async (restaurantId) => {
+    try {
+      const response = await axios.get(
+        `https://localhost:7275/viewmenu/${restaurantId}`
+      );
+      setMenus((prevMenus) => ({
+        ...prevMenus,
+        [restaurantId]: response.data,
+      }));
+    } catch (error) {
+      console.error("Error fetching menu:", error);
+    }
+  };
+
+  const handleBookTable = (restaurantId) => {
+    navigate(`/booking/${restaurantId}`);
+  };
+
   return (
     <div className="container mt-5">
-      <h1>Restaurants</h1>
-      <a href="/add-restaurant" className="btn btn-primary mb-3">
-        Add New Restaurant
-      </a>
-      <table className="table table-striped table-responsive">
-        <thead className="table-light">
+      <h1 className="titlerestaurant">Restaurants</h1>
+      <table className="table table-striped mt-3">
+        <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Type</th>
             <th>Location</th>
             <th>Additional Info</th>
-            <th>Actions</th>
+            <th>Menu</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -27,21 +66,29 @@ const RestaurantList = ({ restaurants }) => {
               <td>{restaurant.location}</td>
               <td>{restaurant.additionalInformation}</td>
               <td>
-                <a
-                  href={`/update-restaurant/${restaurant.id}`}
-                  className="btn btn-warning"
+                <button
+                  onClick={() => handleViewMenu(restaurant.id)}
+                  className="btn btn-info"
                 >
-                  Edit
-                </a>
-                <form
-                  method="post"
-                  className="d-inline"
-                  action={`/delete-restaurant/${restaurant.id}`}
+                  View Menu
+                </button>
+                {menus[restaurant.id] && menus[restaurant.id].length > 0 && (
+                  <ul className="list-group mt-2">
+                    {menus[restaurant.id].map((menuItem) => (
+                      <li className="list-group-item" key={menuItem.id}>
+                        {menuItem.NameOfDish} - {menuItem.price} $
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </td>
+              <td>
+                <button
+                  onClick={() => handleBookTable(restaurant.id)}
+                  className="btn btn-primary"
                 >
-                  <button type="submit" className="btn btn-danger">
-                    Delete
-                  </button>
-                </form>
+                  Book Table
+                </button>
               </td>
             </tr>
           ))}
@@ -49,6 +96,4 @@ const RestaurantList = ({ restaurants }) => {
       </table>
     </div>
   );
-};
-
-export default RestaurantList;
+}

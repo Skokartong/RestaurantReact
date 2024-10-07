@@ -1,40 +1,68 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./Components/Home";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
+import About from "./Components/About";
 import RestaurantList from "./Components/RestaurantList";
-import AccountList from "./Components/AccountList";
-import BookingList from "./Components/BookingList";
+import BookingForm from "./Components/BookingForm";
+import ConfirmationPage from "./Components/ConfirmationPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  const restaurants = [];
-  const bookings = [];
-  const accounts = [];
-
+const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/Home/Index" exact component={Home} />
-        <Route path="Account/Login" component={Login} />
-        <Route path="Account/Register" component={Register} />
-        <Route path="/User/Index" element={<UserDashboard />} />
-        <Route path="/Admin/Index" element={<AdminDashboard />} />
-        <Route
-          path="/Admin/ViewRestaurants"
-          element={<RestaurantList restaurants={restaurants} />}
-        />
-        <Route
-          path="/Admin/ViewBookings"
-          element={<BookingList bookings={bookings} />}
-        />
-        <Route
-          path="/Admin/ViewAccounts"
-          element={<AccountList accounts={accounts} />}
-        />
-      </Switch>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            Forky
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/restaurants">
+                  Restaurants
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/booking">
+                  Booking
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/restaurants" element={<RestaurantList />} />
+        <Route path="/booking" element={<BookingForm />} />
+        <Route path="/booking/:restaurantId" element={<BookingForm />} />{" "}
+        <Route path="/confirmation" element={<ConfirmationPage />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
