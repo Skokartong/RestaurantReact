@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import forkyLogo from "../assets/forkylogo.png";
+import forkyLogo from "../assets/forkyforky.png";
 import "../index.css";
 
 function Home() {
