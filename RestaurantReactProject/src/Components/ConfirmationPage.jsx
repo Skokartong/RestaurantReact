@@ -1,8 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import confirmationImage from "../assets/confirmation-image.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/minty/bootstrap.min.css";
+import confirmationImage from "../assets/confirmation-image.jpg";
 import "../index.css";
 
 const ConfirmationPage = () => {

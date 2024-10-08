@@ -1,12 +1,14 @@
 import React from "react";
-import forkyLogo from "../assets/forkyforky.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/minty/bootstrap.min.css";
+import forkyLogo from "../assets/forkylogo.png";
 import "../index.css";
 
 function Home() {
   return (
-    <div className="container-fluid py-5" style={{ backgroundColor: "white" }}>
+    <div
+      className="container-fluid py-5"
+      style={{ backgroundColor: "#c9efc7" }}
+    >
       <div className="container text-center">
         <img
           src={forkyLogo}
