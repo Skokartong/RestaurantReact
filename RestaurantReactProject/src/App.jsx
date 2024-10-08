@@ -6,14 +6,16 @@ import RestaurantList from "./Components/RestaurantList";
 import BookingForm from "./Components/BookingForm";
 import ConfirmationPage from "./Components/ConfirmationPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/minty/bootstrap.min.css";
+import "./index.css";
 
 const App = () => {
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-primary">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            Forky
+          <Link className="navbar-brand brand-font" to="/">
+            forky
           </Link>
           <button
             className="navbar-toggler"

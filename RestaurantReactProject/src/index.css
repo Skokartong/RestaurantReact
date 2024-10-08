@@ -6,13 +6,11 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #c9efc7;
   font-family: "Rubik", sans-serif;
   color: #333;
 }
 
 .navbar {
-  background-color: #007a7a;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,10 +38,6 @@ body {
   font-family: "Rubik", sans-serif;
 }
 
-.aboutforky {
-  color: #b47d3a;
-}
-
 .mt-4 {
   font-size: 1.7em;
   margin-bottom: 0;
@@ -56,7 +50,6 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  color: #c7995b;
   margin-bottom: 0.5em;
 }
 
@@ -73,29 +66,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #30ba89;
   margin: 0.5em 0;
-}
-
-.btn-primary {
-  background-color: #b47d3a;
-  border: none;
-  color: #fff;
-  transition: background-color 0.25s;
-}
-
-.btn-info {
-  color: #ffffff;
-  background-color: #007a7a;
-}
-
-.btn-info:hover {
-  color: #b47d3a;
-  background-color: #bef6e1;
-}
-
-.btn-primary:hover {
-  background-color: #42bd8c;
 }
 
 .btn {
@@ -131,4 +102,16 @@ h6 {
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+}
+
+.nav-link {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.brand-font {
+  color: white;
+  font-weight: bolder;
+  font-family: "Bauhaus 93", sans-serif;
+  font-size: 3em;
 }

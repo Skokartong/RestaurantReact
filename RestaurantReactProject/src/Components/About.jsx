@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/minty/bootstrap.min.css";
 import "../index.css";
 
 const About = () => {
@@ -10,7 +11,7 @@ const About = () => {
   return (
     <div className="container mt-5">
       <h2 className="aboutforky text-center">About Forky</h2>
-      <div className="card mb-4">
+      <div className="card mb-4 shadow-sm">
         <div className="card-body">
           <p className="card-text">{aboutData}</p>
         </div>
